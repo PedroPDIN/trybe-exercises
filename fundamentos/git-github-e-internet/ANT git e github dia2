@@ -1,0 +1,12 @@
+livro "antifragil" para ajudar na softskills
+pull requst = de branch para branch!
+antes de clonar (git clone) verefiue que vc estar em um repositorio pois se estiver pode causar problemas no desenvolvimento.
+git remote -v = para saber qual repositorio remoto esta linkado no meu repositorio local
+-git commit -am = você e capaz de adicionar"a" (ADD) todos os arquivos e nomear os arquivos adicionador(m). ou sseja add e commit.
+git -u ... = para fazer um push pela primeira vez, ou seja vc pode utilizar apartir dai apenas "git push" para facilitar. caso queira mudar de repositorio basta usar novamente o          "git push -u" ...  novamente.
+git branch --all ou git branch --a= mostra todos as branch inclusive as ocultas e as excluidas
+git fetch = puxa para o repositorio local, e é capaz de ver as alterações em que outro usuario modificou em paralelo. mostra as todas alterações no repertorio. 
+git -d = deleta o repostorio.
+behind = apos executar o comando git status. Se aparecer em meio os texto a palvra behind, ele esta informando que o repositorio  esta atras ou seja esta desatualizado, pois outro usuario em paralelo alterou a branch ates de vc. com isso é necessario usar o git pull para puxar a/as altereções no repositorio remoto para seu terminal.
+git pull = verifica se há algumas alterações assim como git fetch, mas ele também faz o git mange, ou seja ele mergea (unir) os commits.
+

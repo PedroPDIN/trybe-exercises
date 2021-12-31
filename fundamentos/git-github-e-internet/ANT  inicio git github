@@ -1,0 +1,13 @@
+BRANCH = Os branches permitem que você desenvolva recursos, corrija erros ou experimente com segurança novas ideias em uma área contida do seu repositório.
+BRANCH MARTER/MAIN = Branch principal (codigo estavel)
+com isso pode-se fazer ramificações (alterar/modificar) no BRANCH MAN.
+MERGE = É INCORPORAR (FUNDIR) as alterações no branch man.
+COMMIT = Registro de alteração (Conjunteo de alterações registro.
+OBS: GIT INIT = será pouco usado, e usa uma vez. Ele cria um repositorio localmente. Apos feito isso vc nunca mas usara esse comando nesse repositorio e em subreportorio. vc s ó pode utilizar esse comando em outro repositorio localmente em outro lugar em outra pasta (CUIDADO).
+GIT STATS = mostra os status em que se encontra o git, se modificações ou se arquivos a ser comitados (commit).
+GIT LOG = Mostra o registro de COMMITS.
+GIT ADD = O comando git add adiciona uma alteração no diretório ativo à área de staging. Ele diz ao Git que você quer incluir atualizações a um arquivo específico no próximo commit.
+CHECKOUT = muda de branch.
+Para versionar alteções do GIT e preciso adionar (ADD)
+
+
