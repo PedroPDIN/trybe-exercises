@@ -1,0 +1,24 @@
+<DOCTYPE html> = informa otipo de arquivo qeu no esta se referindo ao html.
+<html> = praticamente o inicio e o fim do arquivo, que no caso se denomina html e também pode colocar o linguagem da pagina. Contudo ele possui duas tegs importantes o head e body.
+<head> = possui varios comandos. Nele vai ter minhas configurações da pagina html.
+<body> =  o corpo da pagina botar a maão na massa. Colocar todas as tags visiveis na pagina.
+<p> = paragrafo
+<br> = quebra a linha do texto.
+existem tags que não precisam de fechamento como por exemplo o <br>. pois mesmo não possuindo informação dentro ela continua fucionando.
+<strong> = deixa a informação que esta dentro em negrito.
+<ul> ou <ol>= estrutura da lista
+<li> = itens da lista.
+<img> = adiciona uma imagem
+<img src=""> = "atributo" atribui um caminho para adicionar uma imagem.
+width=""= determina a largura da imagem por pixel (px).
+OBS = a tag <img> não precisa de fechamento.
+alt = adiciona a descrição da imagem caso a mesma não carrega.
+
+LINKS INTERNOS = Permite redirencionar alguma coisa dentro da sua propria pagina.
+LINKS EXTERNOS = Permite redirencionar informações para outra pagina.
+<a> = cria um hiperlinks, tanto interno como externo.
+<a href=""> = cria um link externo na mesma aba.
+<a target=""> = redirenciona o link para uma nova aba.
+<a terget="_blank"> = redirenciona o link em uma nova aba em branco.
+LINK INTERNO = estudar sobre. basicamente ele cria uma ancora na pagina. vc pode navegar dentro da pagina utilizando o link externo.
+LINK INTERNO = utilizasse o mesmo comando do link externo so muda alguma exeçõess, como a atribuição de "#" e "id".
