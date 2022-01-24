@@ -7,3 +7,5 @@
 Interessante como podemos fazer tantas coisas com os hooks , né?
 
 Na seção de Recursos adicionais estaremos disponibilizando uma palestra que foi realizada na React Conf de 2018, com bastante conteúdo prático e didático para você, que tal dar uma verificada e ver como foi o lançamento desse recurso na época?
+
+**OBS**: os links estarão desativados, pois o conteúdo do exercicio é privado.
