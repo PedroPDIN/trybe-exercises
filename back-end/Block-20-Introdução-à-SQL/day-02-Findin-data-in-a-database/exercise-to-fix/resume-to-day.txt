@@ -52,7 +52,7 @@ Para os exercícios a seguir, vamos usar a tabela sakila.actor.
        mas não mostre o idioma english.
 
         Resposta =>
-         USE
+         USE sakila;
          SELECT * FROM language LIMIT 5 OFFSET 1;
 
 ------------------------------------------------------------------------------------------------------------
