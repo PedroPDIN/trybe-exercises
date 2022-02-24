@@ -1,0 +1,23 @@
+EXECÍCIO 1;
+
+1. Insira um novo funcionário na tabela sakila.staff.
+
+        INSERT INTO `sakila`.`staff`
+            (first_name, last_name, address_id, email, store_id, active, username, password)
+        VALUES
+            ('Geralt', 'of Rivia', 2, 'tossacoin@gmail.com', 1, 1, 'geralt', 'theWhiteWolf');
+
+2. Para saber quais campos são obrigatórios, clique com o botão direito na tabela sakila.staff e selecione "Table Inspector". 
+   Clique na aba "columns" e verifique quais campos aceitam nulos para te guiar. 
+   Lembre-se de que valores que são gerados automaticamente não precisam ser inseridos manualmente. Boa explorada!
+
+        INSERT INTO `sakila`.`staff`
+            (first_name, last_name, address_id, email, store_id, active, username, password)
+        VALUES
+            ('Pedro', 'Lima', 3, 'pedro@gmail.com', 1, 1, 'Pedro', 1234567890),
+            ('Levi', 'Arckerman', 4, 'mito@gmail.com', 1, 1, 'Levi', 'limpezasempre');
+
+3. Feito o exercício anterior, vamos agora para o nível 2. Insira dois funcionários novos em apenas uma query .
+4. Selecione os cinco primeiros nomes e sobrenomes da tabela sakila.customer e cadastre essas pessoas como atores na tabela sakila.actor .
+5. Cadastre três categorias de uma vez só na tabela sakila.category .
+6. Cadastre uma nova loja na tabela sakila.store .
