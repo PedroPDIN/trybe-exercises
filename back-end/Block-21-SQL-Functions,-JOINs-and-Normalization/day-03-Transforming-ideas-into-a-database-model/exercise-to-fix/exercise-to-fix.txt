@@ -1,0 +1,140 @@
+EXERCÍCIO PARA FIXAR;
+
+Exercício 1: Normalize a tabela a seguir para a 1ª Forma Normal.
+
+FUNCIONÁRIO
+
+funcionario_id  |  nome      |   sobre_nome  |          email              |  data_cadastro  
+12                Joseph        Rodrigues       jo@gmail.com                  2020-05-05 08:50:25
+13                André         Freeman         andre1990@gmail.com           5 de Fevereiro de 2020
+14                Cíntia        Duval           cindy@outlook.com               2020-05-05 10:55:35
+15                Fernanda      Mendes          fernandamendes@yahoo.com      2020-05-05 11:45:40
+
+
+CONTATO
+
+    contato_id    |  funcionario_id   |    contato   
+   1                 12                   (35)998552-1445
+   2                 13                   (47)99522-4996
+   3                 14                   (33)99855-4669
+   4                 15                   (33)99200-1556
+
+
+SETOR
+
+setor_id    |  funcionario_id   |       setor
+1               12                   Administrção
+2               12                   Vendas
+3               13                   Operacional
+4               14                   Estratégico
+5               14                   Vendas
+6               15                   Marketing
+
+Exercício 2: Usando a estrutura (já normalizada para 1ª Forma Normal) da tabela anterior, transforme-a agora na 2ª Forma Normal.
+
+
+funcionario_id  |  nome      |   sobre_nome  |          email              |  data_cadastro  
+12                Joseph        Rodrigues       jo@gmail.com                        1
+13                André         Freeman         andre1990@gmail.com                 2
+14                Cíntia        Duval           cindy@outlook.com                     3
+15                Fernanda      Mendes          fernandamendes@yahoo.com            4
+
+CONTATO
+
+    contato_id    |  funcionario_id   |    contato   
+   1                 12                   (35)998552-1445
+   2                 13                   (47)99522-4996
+   3                 14                   (33)99855-4669
+   4                 15                   (33)99200-1556
+
+
+SETOR
+
+setor_id     |       setor
+1                            Administração
+2                            Vendas
+3                            Operacional
+4                            Estratégico
+5                            Marketing
+
+SETOR_FUNCIONARIO
+
+funcionario_id    |  setor_id
+12                   1
+12                   2
+13                   3 
+14                   4
+14                   2
+15                   5
+
+Exerício 3: Monte uma query que:
+     * Crie um banco de dados chamado normalization ;
+     * Crie todas as tabelas resultantes do exercício 2 (na 2ª Forma Normal);
+     * Popule todas as tabelas com os dados fornecidos nos exercícios.
+
+==>
+CREATE DATABASE IF NOT EXISTS normalization;
+
+USE normalization;
+
+CREATE TABLE funcionario(
+funcionario_id INT PRIMARY KEY,
+nome VARCHAR(100),
+sobrenome VARCHAR(100),
+email VARCHAR(100),
+data_cadastro VARCHAR(100)
+) ENGINE InnoDB;
+
+INSERT INTO 
+funcionario(funcionario_id, nome, sobrenome, email, data_cadastro)
+VALUES
+(12, 'Joseph', 'Rodrigues', 'jo@gmail.com', '2020-05-05 08:50:25'),
+(13, 'André', 'Freeman', 'andre@gmail.com', '2020-02-05 00:00:00'),
+(14, 'Cíntia', 'Duval', 'cindy@outlook.com', '2020-05-05 10:55:35'),
+(15, 'Fernanda', 'Mendes', 'fernandamendes@yahoo.com', '2020-05-05 11:45:40');
+
+CREATE TABLE contato(
+contato_id INT PRIMARY KEY AUTO_INCREMENT,
+contato VARCHAR(50),
+funcionario_id INT NOT NULL,
+FOREIGN KEY (funcionario_id) REFERENCES funcionario(funcionario_id)
+) ENGINE=InnoDB;
+
+INSERT INTO
+contato(contato, funcionario_id)
+VALUES
+('(35)998552-1445', 12),
+('(47)99522-4996', 13),
+('(33)99855-4669', 14),
+('(33)99200-1556', 15);
+
+CREATE TABLE setor(
+setor_id INT PRIMARY KEY AUTO_INCREMENT,
+setor VARCHAR(100)
+) ENGINE=InnoDB;
+
+INSERT INTO
+setor(setor)
+VALUES
+('Adiministração'),
+('Vendas'),
+('Operacional'),
+('Estratégico'),
+('Marketing');
+
+CREATE TABLE setor_funcionario(
+funcionario_id INT NOT NULL,
+setor_id INT NOT NULL,
+FOREIGN KEY (funcionario_id) REFERENCES funcionario(funcionario_id),
+FOREIGN KEY (setor_id) REFERENCES setor(setor_id)
+) ENGINE=InnoDB;
+
+INSERT INTO
+setor_funcionario(funcionario_id, setor_id)
+VALUES
+(12, 1),
+(12, 2),
+(13, 3),
+(14, 4),
+(14, 2),
+(15, 5);
