@@ -1,8 +1,9 @@
 const express = require("express");
 const fs = require("fs").promises;
-// const bodyParser = require("body-parser")
+const bodyParser = require("body-parser")
 
 const app = express();
+app.use(bodyParser.json())
 
 const fileJson = () => {
   return fs.readFile("./simpsons.json", "utf-8")
@@ -31,7 +32,6 @@ app.get("/simpsons", async (req, res) => {
   }
 });
 
-
 // EXERCÍCIO 7
 app.get("/simpsons/:id", async (req, res) => {
   const { id } = req.params;
@@ -45,6 +45,20 @@ app.get("/simpsons/:id", async (req, res) => {
     return res.status(200).json(simpsonsId);
   }
 });
+
+// EXERCÍCIO 8
+app.post("/simpsons", async (req, res) => {
+  const { id, name } = req.body;
+  const dataSimpsons = await fileJson()
+  const ids = dataSimpsons.map((v) => v.id)
+  const existingId = ids.includes(id)
+
+  if(existingId === true) return res.status(409).json({ 'message': 'id already exists' })
+
+  dataSimpsons.push({ id, name })
+  await fs.writeFile('./simpsons.json', JSON.stringify(dataSimpsons))
+  res.status(204).end()
+})
 
 app.listen(3001, () => {
   console.log('Aplicação ouvindo na posta 3001 (simpsons)')

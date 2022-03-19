@@ -12,6 +12,7 @@ app.get("/ping", (req, res) => {
 // EXERCÍCIO 2
 app.post("/hello", (req, res) => {
   const { name } = req.body;
+  console.log(name)
   return res.status(200).json({ message: `Hello, ${name}!` })
 })
 
