@@ -11,12 +11,25 @@ const fileJson = () => {
 
 app.get("/", async (req, res) => {
   const dataSimpsons = await fileJson()
+
   try {
     res.status(200).json(dataSimpsons);
   } catch (error) {
     res.status(500).json({ "message": "Internal Server Error" })
   }
-})
+});
+
+// EXERCÍCIO 6
+app.get("/simpsons", async (req, res) => {
+  const dataSimpsons = await fileJson()
+  const test = dataSimpsons.filter(({ name }) => name.split(' ')[1] === 'Simpson')
+
+  try {
+    res.status(200).json(test);
+  } catch (error) {
+    res.status(500).json({ "message": "Internal Server Error" })
+  }
+});
 
 app.listen(3001, () => {
   console.log('Aplicação ouvindo na posta 3001 (simpsons)')
