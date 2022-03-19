@@ -22,10 +22,10 @@ app.get("/", async (req, res) => {
 // EXERCÍCIO 6
 app.get("/simpsons", async (req, res) => {
   const dataSimpsons = await fileJson()
-  const test = dataSimpsons.filter(({ name }) => name.split(' ')[1] === 'Simpson')
+  const simpsons = dataSimpsons.filter(({ name }) => name.split(' ')[1] === 'Simpson')
 
   try {
-    res.status(200).json(test);
+    res.status(200).json(simpsons);
   } catch (error) {
     res.status(500).json({ "message": "Internal Server Error" })
   }
