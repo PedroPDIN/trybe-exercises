@@ -12,11 +12,11 @@ const isValid = async (req, res, next) => {
     uf: Joi.string().not().empty().required(),
   }).validate({ cep, logradouro, bairro, localidade, uf })
 
-  if (error)
+  if (error) {
     return res
       .status(400)
       .json({ error: { code: "invalidData", message: error } });
-
+  }
       next();
 };
 
