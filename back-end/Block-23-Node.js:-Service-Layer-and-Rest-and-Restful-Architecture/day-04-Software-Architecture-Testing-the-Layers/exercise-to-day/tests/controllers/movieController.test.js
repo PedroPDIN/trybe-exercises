@@ -90,14 +90,15 @@ describe('Ao chamar o controller do getById', async () => {
 
     it('É chamado o status 400, com o seu retorno.', async () => {
       await MoviesService.getById(request, response);
+      const fakeMessage = { message: "id not found" }
 
       expect(response.status.calledWith(400)).to.be.equal(false);
-      expect(response.json.message.calledWith('id not found')).to.be.equal(false);
+      expect(response.json.calledWith(fakeMessage)).to.be.equal(false);
     })
   })
 
   describe('Quando o ID é encontrado.', async () => {
-    describe('É chamado o status 200, com o seu retorno.', () => {
+    describe('Quando é o payload é realizado com sucesso', async () => {
       const fakeController = {
         id: 1,
         title: 'Title Book',
@@ -116,7 +117,12 @@ describe('Ao chamar o controller do getById', async () => {
         MoviesService.getById.restore();
       });
 
-      it()
+      it('É chamado o status 200, com o seu retorno.', async () => {
+        await MoviesService.getById(request, response);
+
+        expect(response.status.calledWith(200)).to.be.equal(true);
+        expect(response.json.calledWith(fakeController)).to.be.equal(true);
+      })
     })
   })
 })

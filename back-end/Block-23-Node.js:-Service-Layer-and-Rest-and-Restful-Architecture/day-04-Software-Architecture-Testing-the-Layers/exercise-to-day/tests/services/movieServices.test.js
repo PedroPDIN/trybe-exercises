@@ -4,6 +4,7 @@ const connection = require('../../models/connection');
 
 const MoviesModel = require('../../models/movieModel');
 const MoviesService = require('../../services/movieService');
+const BookService = require('../../services/bookService');
 
 describe('Insere um novo filme no BD', () => {
   describe('quando o payload informado não é válido', async () => {
@@ -57,41 +58,40 @@ describe('Insere um novo filme no BD', () => {
 });
 
 // EXERCÍCIO DO DIA.
-describe('Funcionalidade de busca por ID', async () => {
+describe.only('Funcionalidade de busca por ID', async () => {
   describe('Verifica se ID não é um string.', async () => {
     it('Retorna "false"', async () => {
-      const response = await MoviesService.getById('id');
+      const response = await BookService.getById('id');
   
-      expect(response).to.be.equal(false);
+      expect(response).to.be.equal(null);
     });
   });
 
   describe('Quando ID é inserido com sucesso.', async () => {
     describe('Retorna as informações corretas', async () => {
+      const fakeService = {
+        id: 1,
+        title: 'Title Book',
+        author_id: 1,
+      }
 
-      before(async () => {
-        sinon.stub(connection, 'execute').resolves(execute);
-        sinon.stub(MoviesModel, 'getById').resolves({
-          id: 1,
-          title: 'Title Book',
-          author_id: 1,
-        });
+      before(() => {
+        sinon.stub(MoviesModel, 'getById').resolves(fakeService);
       });
-      after(async () => {
-        connection.execute.restore();
+      after(() => {
         MoviesModel.getById.restore();
-      })
+      });
 
       it('retorna um objeto', async () => {
-        const response = await MoviesService.getById(1);
+        const test = await BookService.getById(1);
   
-        expect(response).to.be.a('object');
+        expect(test).to.be.a('object');
       });
   
       it('Retorna o objeto com as chaves corretas.', async () => {
-        const getById = await MoviesModel.getById(1);
+        const test = await BookService.getById(1);
   
-        expect(getById).to.have.all.keys('id', 'title', 'author_id');
+        expect(test).to.have.all.keys('id', 'title', 'author_id');
       });
 
     });
