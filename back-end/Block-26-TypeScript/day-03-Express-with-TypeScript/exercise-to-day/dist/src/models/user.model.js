@@ -13,6 +13,7 @@ class UserModel {
     constructor(connection) {
         this.connection = connection;
     }
+    ;
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
             const query = 'SELECT * FROM Users;';
@@ -20,5 +21,16 @@ class UserModel {
             return result;
         });
     }
+    ;
+    getById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const query = 'SELECT * FROM Users WHERE id = ?';
+            const [data] = yield this.connection.execute(query, [id]);
+            const [user] = data;
+            return user || null;
+        });
+    }
+    ;
 }
 exports.default = UserModel;
+;

@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default mysql.createPool({
-  user: 'pedro',
+  user: process.env.DATABASE_USER,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
   host: process.env.HOST,

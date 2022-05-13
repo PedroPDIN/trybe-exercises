@@ -7,7 +7,7 @@ const promise_1 = __importDefault(require("mysql2/promise"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 exports.default = promise_1.default.createPool({
-    user: 'pedro',
+    user: process.env.DATABASE_USER,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
     host: process.env.HOST,
