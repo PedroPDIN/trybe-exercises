@@ -31,6 +31,16 @@ class UserModel {
         });
     }
     ;
+    createdUser(u) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { name, email, password } = u;
+            const query = 'INSERT INTO TypeScriptExpress.Users (name, email, password) VALUES (?, ?, ?);';
+            const [{ insertId }] = yield this.connection.execute(query, [name, email, password]);
+            const newUser = { id: insertId, name, email, password };
+            return newUser;
+        });
+    }
+    ;
 }
 exports.default = UserModel;
 ;

@@ -6,5 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const user_route_1 = __importDefault(require("./src/routes/user.route"));
 const app = (0, express_1.default)();
+app.use(express_1.default.json());
 app.use('/users', user_route_1.default);
 app.listen(3000, () => console.log('Online...'));

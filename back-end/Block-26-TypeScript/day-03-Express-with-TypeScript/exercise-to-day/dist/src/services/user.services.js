@@ -32,6 +32,13 @@ class UserService {
         });
     }
     ;
+    createdUser(u) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const create = yield this.model.createdUser(u);
+            return create;
+        });
+    }
+    ;
 }
 exports.default = UserService;
 ;
