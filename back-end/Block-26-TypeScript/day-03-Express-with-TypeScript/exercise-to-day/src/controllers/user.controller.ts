@@ -22,3 +22,17 @@ export const createUser = async (req:Request, res:Response):Promise<Response> =>
     if(!result) return res.status(400).json({ message: 'Error' });
     return res.status(201).json(result);
 };
+
+export const updateUser = async (req:Request, res:Response):Promise<Response> => {
+    const userId = req.params.id;
+    const userBody = req.body;
+    const result = await service.updateUser(Number(userId), userBody)
+    if(!result) return res.status(400).json({ message: 'Not found' });
+    return res.status(200).json(result);
+};
+
+export const destroyUser = async (req:Request, res:Response): Promise<Response> => {
+    const userId = Number(req.params.id);
+    await service.destroyUser(userId);
+    return res.status(200).json({ message: 'User deleted success' })
+};

@@ -41,6 +41,23 @@ class UserModel {
         });
     }
     ;
+    updateUser(id, u) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { name, email, password } = u;
+            const query = 'UPDATE TypeScriptExpress.Users SET name = ?, email = ?, password = ? WHERE id = ?;';
+            yield this.connection.execute(query, [name, email, password, id]);
+            const newUser = { id, name, email, password };
+            return newUser;
+        });
+    }
+    ;
+    destroyUser(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const query = 'DELETE FROM TypeScriptExpress.Users WHERE id = ?;';
+            yield this.connection.execute(query, [id]);
+        });
+    }
+    ;
 }
 exports.default = UserModel;
 ;

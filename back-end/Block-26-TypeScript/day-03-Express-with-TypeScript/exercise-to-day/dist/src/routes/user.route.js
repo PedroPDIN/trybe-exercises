@@ -7,4 +7,6 @@ const route = (0, express_1.Router)();
 route.get("/", user_controller_1.getAllController);
 route.get("/:id", user_controller_1.getByIdController);
 route.post('/', user_validation_1.isValidUser, user_controller_1.createUser);
+route.put("/:id", user_validation_1.isValidUser, user_controller_1.updateUser);
+route.delete("/:id", user_controller_1.destroyUser);
 exports.default = route;

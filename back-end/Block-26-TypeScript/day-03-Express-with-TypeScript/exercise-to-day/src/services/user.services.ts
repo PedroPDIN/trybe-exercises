@@ -23,4 +23,20 @@ export default class UserService {
     const create = await this.model.createdUser(u);
     return create;
   };
+
+  public async updateUser(id: number, user: IUser): Promise<IUser | null> {
+    const getId = await this.model.getById(id)
+    if(!getId) return null;
+
+    const update = await this.model.updateUser(id, user);
+    return update;
+  };
+
+
+  public async destroyUser(id: number): Promise<void | null> {
+    const getId = await this.model.getById(id)
+    if(!getId) return null;
+
+    await this.model.destroyUser(id)
+  };
 };

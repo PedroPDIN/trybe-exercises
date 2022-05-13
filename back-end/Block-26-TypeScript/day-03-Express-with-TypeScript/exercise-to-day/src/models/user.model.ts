@@ -23,9 +23,22 @@ export default class UserModel {
 
   public async createdUser(u: IUser): Promise<IUser> {
     const { name, email, password } = u;
-    const query  = 'INSERT INTO TypeScriptExpress.Users (name, email, password) VALUES (?, ?, ?);'
+    const query = 'INSERT INTO TypeScriptExpress.Users (name, email, password) VALUES (?, ?, ?);'
     const [{ insertId }] = await this.connection.execute<ResultSetHeader>(query, [name, email, password]);
     const newUser:IUser = { id: insertId, name, email, password };
     return newUser;
+  };
+
+  public async updateUser(id: number, u:IUser): Promise<IUser | null> {
+    const { name, email, password } = u;
+    const query = 'UPDATE TypeScriptExpress.Users SET name = ?, email = ?, password = ? WHERE id = ?;'
+    await this.connection.execute<ResultSetHeader>(query, [name, email, password, id]);
+    const newUser:IUser = { id, name, email, password };
+    return newUser;
+  };
+
+  public async destroyUser(id: number): Promise<void> {
+    const query = 'DELETE FROM TypeScriptExpress.Users WHERE id = ?;'
+    await this.connection.execute(query, [id]);
   };
 };

@@ -39,6 +39,25 @@ class UserService {
         });
     }
     ;
+    updateUser(id, user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getId = yield this.model.getById(id);
+            if (!getId)
+                return null;
+            const update = yield this.model.updateUser(id, user);
+            return update;
+        });
+    }
+    ;
+    destroyUser(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getId = yield this.model.getById(id);
+            if (!getId)
+                return null;
+            yield this.model.destroyUser(id);
+        });
+    }
+    ;
 }
 exports.default = UserService;
 ;
