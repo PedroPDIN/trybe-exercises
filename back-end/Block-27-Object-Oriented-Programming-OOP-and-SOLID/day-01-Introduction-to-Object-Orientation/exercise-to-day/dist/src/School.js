@@ -6,6 +6,18 @@ class School {
             this._examGrades = _examGrades,
             this._workNotes = _workNotes;
     }
+    get name() {
+        return this._name;
+    }
+    get registration() {
+        return this._registration;
+    }
+    get examGrades() {
+        return this._examGrades;
+    }
+    get workNotes() {
+        return this._workNotes;
+    }
     somNotes() {
         const notes = [...this._examGrades, ...this._workNotes];
         return notes.reduce((acc, value) => acc + value, 0);
@@ -13,10 +25,10 @@ class School {
     averageNotes() {
         const lengthNotes = this._examGrades.length + this._workNotes.length;
         const resultNotes = this.somNotes();
-        return resultNotes / lengthNotes;
+        return (resultNotes / lengthNotes).toFixed(2);
     }
     message() {
-        return `${this._registration}, Aluno: ${this._name} Média: ${this.averageNotes()}`;
+        return `ID de matricula:${this._registration}, Aluno: ${this._name} Média: ${this.averageNotes()}`;
     }
 }
 const student1 = new School('001001', 'Pedro', [10, 2, 4, 5], [10, 10]);

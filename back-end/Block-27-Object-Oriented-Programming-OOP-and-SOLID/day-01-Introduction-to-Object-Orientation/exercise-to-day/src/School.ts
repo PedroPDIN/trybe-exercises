@@ -11,18 +11,34 @@ class School {
     this._workNotes = _workNotes
   }
 
-  somNotes() {
+  public get name() {
+    return this._name;
+  }
+
+  public get registration() {
+    return this._registration;
+  }
+
+  public get examGrades() {
+    return this._examGrades;
+  }
+
+  public get workNotes() {
+    return this._workNotes;
+  }
+
+  public somNotes() {
     const notes = [...this._examGrades, ...this._workNotes]
     return notes.reduce((acc, value) => acc + value, 0)
   }
 
-  averageNotes() {
+  public averageNotes() {
     const lengthNotes = this._examGrades.length + this._workNotes.length;
     const resultNotes = this.somNotes();
-    return resultNotes / lengthNotes;
+    return (resultNotes / lengthNotes).toFixed(2);
   }
 
-  message() {
+  public message() {
     return `ID de matricula:${this._registration}, Aluno: ${this._name} Média: ${this.averageNotes()}`;
   }
 }
