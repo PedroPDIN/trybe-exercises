@@ -1,4 +1,4 @@
-class Data {
+/* class Data {
 
   private _day: number;
   private _month: number;
@@ -33,4 +33,4 @@ class Data {
 
     return true;
   }
-}
+} */
