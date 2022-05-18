@@ -1,4 +1,4 @@
-class School {
+export default class School {
     private _registration: string; // matrícula
     private _name: string; // nome
     private _examGrades: number[]; // notas de provas
@@ -41,7 +41,4 @@ class School {
     public message() {
       return `ID de matricula:${this._registration}, Aluno: ${this._name} Média: ${this.averageNotes()}`;
     }
-  }
-  
-  const student1 = new School('001001', 'Pedro', [10, 2, 4, 5], [10, 10]);
-  console.log(student1.message())
+  };
