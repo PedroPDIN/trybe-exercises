@@ -1,44 +1,49 @@
-export default class School {
-    private _registration: string; // matrícula
-    private _name: string; // nome
-    private _examGrades: number[]; // notas de provas
-    private _workNotes: number[]; // notas de trabalho
+import Person from "./Person";
+
+export default class School extends Person {
+    private _enrollment: string = ''; // matrícula
+    private _examGrades: number[] = []; // notas de provas
+    private _workGrades: number[] = []; // notas de trabalho
   
-    constructor(_registration: string, _name: string, _examGrades: number[], _workNotes: number[]) {
-      this._registration = _registration,
-      this._name = _name,
-      this._examGrades = _examGrades,
-      this._workNotes = _workNotes
+    constructor(name: string, birthDate: Date) {
+      super(name,birthDate);
+      this.enrollment = this.getRandomEnrollment();
     }
   
-    public get name() {
-      return this._name;
+  
+    public get enrollment(): string {
+      return this._enrollment;
     }
   
-    public get registration() {
-      return this._registration;
+    public get examGrades(): number[] {
+      return this.examGrades;
     }
   
-    public get examGrades() {
-      return this._examGrades;
+    public get workGrades(): number[] {
+      return this.workGrades;
     }
   
-    public get workNotes() {
-      return this._workNotes;
+    public set enrollment() {
+      
     }
-  
-    public somNotes() {
-      const notes = [...this._examGrades, ...this._workNotes]
+
+    public somGrades() {
+      const notes = [...this.examGrades, ...this.workGrades]
       return notes.reduce((acc, value) => acc + value, 0)
     }
   
-    public averageNotes() {
-      const lengthNotes = this._examGrades.length + this._workNotes.length;
-      const resultNotes = this.somNotes();
+    public averageGrades() {
+      const lengthNotes = this.examGrades.length + this.workGrades.length;
+      const resultNotes = this.somGrades();
       return (resultNotes / lengthNotes).toFixed(2);
     }
   
-    public message() {
-      return `ID de matricula:${this._registration}, Aluno: ${this._name} Média: ${this.averageNotes()}`;
+/*     public message() {
+      return `ID de matricula:${this.enrollment}, Aluno: ${this._name} Média: ${this.averageNotes()}`;
+    } */
+
+    private getRandomEnrollment(): number {
+      return Math.floor(Math.random() * 101)
     }
+    
   };
