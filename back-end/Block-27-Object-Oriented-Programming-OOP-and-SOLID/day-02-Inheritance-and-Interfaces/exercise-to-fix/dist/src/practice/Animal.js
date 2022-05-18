@@ -23,7 +23,7 @@ class Animal {
     constructor(name, birthDate) {
         this.name = name;
         this.birthDate = birthDate;
-    }
+    } // repare no private
     get age() {
         /*Para operar com datas, vamos operar somente com milissegundos. Uma data
         é o número de milissegundos desde o dia 01/01/1970 (era Unix).*/
