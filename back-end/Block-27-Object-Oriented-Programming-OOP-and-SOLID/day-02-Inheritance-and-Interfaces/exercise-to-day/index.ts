@@ -1,15 +1,34 @@
-import School from "./src/School";
 import Person from "./src/Person";
+import Student from "./src/School";
+import Subject from "./src/Subject";
 
-console.log('===========================Schools========================\n')
+// Student
+const Cirilo = new Student('Cirilo', new Date('1998/12/02'));
 
-const student1 = new School('001001', 'Pedro', [10, 2, 4, 5], [10, 10]);
-console.log(student1.message())
+// Person
+const Pedro = new Person('Pedro', new Date('2000/02/15'));
+const Xablau = new Person('Xablau', new Date('1999/01/01'));
 
-console.log('\n=======================Person============================\n')
+// Subject
+const Matematica = new Subject('Matemática');
+const Historia = new Subject('História');
+const Filosofia = new Subject('Filosofia');
 
-const person1 = new Person('Pedro', new Date('2022/02/15'));
-const person2 = new Person('Xablau', new Date('1998/11/11'));
 
-console.log(person1.name, person1.birthDate);
-console.log(person2.name, person2.birthDate);
+console.log('\n==========Student===========\n')
+console.log('Nome:', Cirilo.name);
+console.log('Data de nascimento:', Cirilo.birthDate);
+console.log('Matricula:', Cirilo.enrollment);
+console.log('Nota de Provas: ', Cirilo.examGrades = [10, 10, 5, 8]);
+console.log('Notas de trabalho: ', Cirilo.workGrades = [7, 10]);
+console.log('Resultado:', Cirilo.message());
+
+
+console.log('\n============Person============\n')
+console.log(`Nome: ${Pedro.name}, Nascimento: ${Pedro.birthDate}`);
+console.log(`Nome: ${Xablau.name}, Nascimento: ${Xablau.birthDate}`);
+
+console.log('\n========Subject============\n')
+console.log('Matéria:', Matematica.name);
+console.log('Matéria:', Historia.name);
+console.log('Matéria:', Filosofia.name);

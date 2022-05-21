@@ -1,18 +1,11 @@
 export default class Person {
-  private _name: string = '';
-  private _birthDate: Date = new Date();
-
-  constructor(name: string, birthDate: Date) {
-    this.name = name;
-    this.birthDate = birthDate;
+  constructor(private _name: string, private _birthDate: Date) {
+    this.name = _name,
+    this.birthDate = _birthDate
   }
 
-  public get name() {
-    return this._name;
-  }
-  public get birthDate() {
-    return this._birthDate;
-  }
+  public get name():string { return this._name };
+  public get birthDate(): Date { return this._birthDate };
 
   public set name(params: string) {
     this.isValidName(params);
@@ -26,12 +19,12 @@ export default class Person {
   }
 
   private isValidName = (name: string): void => {
-    if (name.length < 3) console.log("Error: Invalid name, minimum 3 characters");
+    if (name.length < 3) throw new Error("Error: Invalid name, minimum 3 characters");
   };
 
   private isValidDate = (date: Date): void => {
     if (date.getTime() > new Date().getTime())
-      console.log("Error: The date of birth cannot be a date in the future");
+    throw new Error("Error: The date of birth cannot be a date in the future");
   };
 
   private isValidAge = (date: Date): void => {
@@ -39,6 +32,6 @@ export default class Person {
     const age = date.getFullYear() - currentYear;
     const LIMIT_YEAR = 120;
 
-    if(age > LIMIT_YEAR) console.log('Error: The person cannot be over 120 years old');
+    if(age > LIMIT_YEAR) throw new Error('Error: The person cannot be over 120 years old');
   };
 }

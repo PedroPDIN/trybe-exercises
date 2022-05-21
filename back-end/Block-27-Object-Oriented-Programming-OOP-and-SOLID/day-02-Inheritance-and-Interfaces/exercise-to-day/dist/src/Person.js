@@ -1,41 +1,39 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Person {
     constructor(_name, _birthDate) {
         this._name = _name;
         this._birthDate = _birthDate;
         this.isValidName = (name) => {
             if (name.length < 3)
-                console.log("Invalid name, minimum 3 characters");
+                throw new Error("Error: Invalid name, minimum 3 characters");
         };
         this.isValidDate = (date) => {
             if (date.getTime() > new Date().getTime())
-                console.log("The date of birth cannot be a date in the future");
+                throw new Error("Error: The date of birth cannot be a date in the future");
         };
         this.isValidAge = (date) => {
-            const correnteYear = new Date();
-            const age = correnteYear.getFullYear() - date.getFullYear();
+            const currentYear = new Date().getFullYear();
+            const age = date.getFullYear() - currentYear;
             const LIMIT_YEAR = 120;
             if (age > LIMIT_YEAR)
-                console.log('The person cannot be over 120 years old');
+                throw new Error('Error: The person cannot be over 120 years old');
         };
+        this.name = _name,
+            this.birthDate = _birthDate;
     }
-    get name() {
-        return this._name;
-    }
-    get date() {
-        return this._birthDate;
-    }
+    get name() { return this._name; }
+    ;
+    get birthDate() { return this._birthDate; }
+    ;
     set name(params) {
         this.isValidName(params);
         this._name = params;
     }
-    set date(params) {
+    set birthDate(params) {
         this.isValidDate(params);
         this.isValidAge(params);
         this._birthDate = params;
     }
 }
-const person1 = new Person('Pedro', new Date('2239-02-15'));
-const person2 = new Person('Xablau', new Date('1998-11-11'));
-console.log(person1.name, person1.date);
-console.log(person2.name, person2.date);
+exports.default = Person;
