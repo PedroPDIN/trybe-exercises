@@ -4,14 +4,14 @@ import fs from 'fs/promises';
 
 interface IPlant {
   id: string,
-  breed: string,
-  needsSun: boolean,
-  origin: string,
-  size: number,
-  specialCare?: { waterFrequency: number }
+  breed: string, // "raça"
+  needsSun: boolean, // precisa de sol
+  origin: string, // origem
+  size: number, // tamanho
+  specialCare?: { waterFrequency: number } // cuidado especial { agua frequente};
 }
 
-interface IOpsInfo { createdPlants: number }
+interface IOpsInfo { createdPlants: number } // criado plantas
 
 class Plants {
   private readonly plantsFile = 'plantsData.json';
