@@ -1,0 +1,41 @@
+Exemplo de retorno:
+
+  {
+    title: "Batman",
+    category: [
+      "action",
+      "adventure"
+    ],
+    imdbRating: 7.7,
+    budget: 35,
+    ratings: [ 85, 100, 102, 105 ],
+    description: "The Dark Knight of Gotham City begins his war on crime with his first major enemy being Jack Napier, a criminal who becomes the clownishly homicidal Joker."
+  },
+
+1. Utilizando o operador $all, retorne todos os filmes que contenham action e adventure no array category.
+
+=> cinema> db.movies.find({category: { $all: ["action", "adventure"] }  });
+
+2. 🚀 Agora retorne os filmes que contenham action e sci-fi no array category e possuem nota do IMDB maior do que 7.
+
+=> cinema> db.movies.find({ category: { $all: ["action", "sci-fi"]  }, imdbRating: {$gt: 7}  });
+
+4. 🚀 Retorne todos os filmes com ratings entre 100 e 105, exibindo apenas os campos title e ratings.
+
+=> cinema> db.movies.find({ ratings: {$elemMatch: { $gt: 100, $lt: 105  } } }, {_id: 0, title: 1, ratings: 1});
+
+5. 🚀 Retorne todos os filmes com ratings entre 64 e 105 e divisíveis por 9, exibindo apenas os campos title e ratings.
+
+=> cinema> db.movies.find({ ratings: {$elemMatch: { $gt: 64, $lt: 105, $mod: [9, 0]  } } }, {_id: 0, title: 1, ratings: 1});
+
+10. 🚀 Retorne os filmes da categoria "sci-fi" ou que possua o ratings maior do que 199, exibindo apenas os campos title, ratings e category.
+
+=> cinema> db.movies.find({$or: [ {category: "Sci-fi"}, {ratings: {$gt: 199}}  ]}, {_id: 0, title: 1, ratings: 1, category: 1});
+
+ou
+
+=> cinema> db.movies.find({$or: [ {category: {$all: ["Sci-fi"]}}, {ratings: {$elemMatch: {$gt: 199}}}  ]}, {_id: 0, title: 1, ratings: 1, category: 1});
+
+12. 🚀 Utilizando o operador $regex, retorne todos os filmes em que a descrição comece com a palavra "The".
+
+=> cinema> db.movies.find({description: { $regex: /^The/ }});
