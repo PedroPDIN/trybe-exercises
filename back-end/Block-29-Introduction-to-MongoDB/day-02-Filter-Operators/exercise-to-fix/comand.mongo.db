@@ -1,0 +1,95 @@
+Agora que aprendemos sobre os operadores de comparação, vamos sedimentar esses conhecimentos com alguns exercícios de fixação. 
+Para isso, vamos criar um novo banco de dados chamado business com uma coleção chamada restaurants:
+
+Clique neste https://assets.app.betrybe.com/back-end/mongodb/exercise-filter-operators-e8e55183a5af1418a8f0d355ad895d13.js;
+Copie todo o conteúdo do link e depois abra o MongoDB Shell;
+Utilize o comando use business para criar e utilizar este banco de dados;
+Cole todo o conteúdo no terminal do MongoDB Shell e confirme com ENTER, ou baixe o arquivo e o execute usando o comando mongo exercise-filter-operators.js.
+
+O valor retornado deve ser 60, que é a quantidade de documentos nesta coleção. Agora utilize os operadores de comparação para resolver os desafios de 1 a 5.
+
+exemplo de retorno =   {
+    _id: ObjectId("62b1c362c2c496b6b2c94980"),
+    rating: 4,
+    address: {
+      building: '1007',
+      coord: [ -73.856077, 40.848447 ],
+      street: 'Morris Park Ave',
+      zipcode: '10462'
+    },
+    borough: 'Bronx',
+    cuisine: 'Bakery',
+    grades: [
+      { date: { '$date': 1393804800000 }, grade: 'A', score: 2 },
+      { date: { '$date': 1378857600000 }, grade: 'A', score: 6 },
+      { date: { '$date': 1358985600000 }, grade: 'A', score: 10 },
+      { date: { '$date': 1322006400000 }, grade: 'A', score: 9 },
+      { date: { '$date': 1299715200000 }, grade: 'B', score: 14 }
+    ],
+    name: 'Morris Park Bake Shop',
+    restaurant_id: '30075445'
+  }
+
+1. Selecione e faça a contagem dos restaurantes presentes nos bairros Queens, Staten Island e Bronx. (utilizando o atributo borough);
+
+=> business> db.restaurants.countDocuments({borough: {$in: ["Queens", "Staten Island", "Bronx"]}});
+
+2. Selecione e faça a contagem dos restaurantes que não possuem culinária do tipo American. (utilizando o atributo cuisine);
+
+=> business> db.restaurants.countDocuments({cuisine: {$ne: "American"}});
+
+3. Selecione e faça a contagem dos restaurantes que possuem avaliação maior ou igual a 8. (utilizando o atributo rating);
+
+=> business> db.restaurants.countDocuments({rating: {$gte: 8}});
+
+4. Selecione e faça a contagem dos restaurantes que possuem avaliação menor que 4.
+
+=> business> db.restaurants.countDocuments({rating: {$lt: 4}});
+
+5. Selecione e faça a contagem dos restaurantes que não possuem as avaliações 5, 6 e 7.
+
+=> business> db.restaurants.countDocuments({rating: {$nin: [5, 6, 7]}});
+
+Faça os desafios de 1 a 5 abaixo, sobre os operadores lógicos utilizando a coleção restaurants criada no tópico anterior.
+
+1. Selecione e faça a contagem dos restaurantes que não possuem avaliação menor ou igual a 5,
+ essa consulta também deve retornar restaurantes que não possuem o campo de avaliação.
+
+=> business> db.restaurants.countDocuments({rating: {$not: {$lte: 5}}});
+
+2. Selecione e faça a contagem dos restaurantes em que a avaliação seja maior ou igual a 6, ou restaurantes localizados no bairro Brooklyn.
+
+=> business> db.restaurants.countDocuments({$or: [{rating: {$gte: 6}}, {borough: "Brooklyn"}]});
+
+3. Selecione e faça a contagem dos restaurantes localizados nos bairros Queens, Staten Island e Brooklyn e possuem avaliação maior que 4.
+
+=> business> db.restaurants.countDocuments({$and: [{borough: {$in: ["Queens", "Statenn Island", "Brooklyn"]}}, {rating: {$gt: 4}}]});
+
+4. Selecione e faça a contagem dos restaurantes onde nem o campo avaliação seja igual a 1, nem o campo culinária seja do tipo American.
+
+=> business> db.restaurants.countDocuments({$nor: [{rating: 1}, {cuisine: "American"}]});
+
+5. Selecione e faça a contagem dos resturantes em que a avaliação seja maior que 6 ou menor que 10, E esteja localizado no bairro Brooklyn OU não possuem culinária do tipo Delicatessen. 
+
+=> business> db.restaurants.countDocuments({$and: [ {$or: [{rating: { $gt: 6, $lt: 10}} ]}, {$or: [{borough: "Brooklin"}, {cuisine: {$ne: "Delicatessen"}}]} ]});
+
+
+Faça os desafios 1 e 2 abaixo sobre o sort() utilizando a coleção restaurants criada anteriormente.
+
+1. Ordene alfabeticamente os restaurantes pelo nome (atributo name).
+
+=> business> db.restaurants.find().sort({ name: 1  });
+
+2. Ordene os restaurantes de forma decrescente baseado nas avaliações.
+
+=> business> db.restaurants.find().sort({ rating: -1 });
+
+Faça os desafios 1 e 2 abaixo, sobre remoção de documentos utilizando a coleção restaurants criada anteriormente.
+
+1. Remova o primeiro restaurante que possua culinária do tipo Ice Cream, Gelato, Yogurt, Ices.
+
+=> business> db.restaurants.deleteOne({cuisine: "Ice Cream, Gelato, Yogurt, Ices"});
+
+2. Remova todos os restaurantes que possuem culinária do tipo American.
+
+=> business> db.restaurants.deleteMany({cuisine: "American"});
