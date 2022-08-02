@@ -1,0 +1,7 @@
+nome idade
+Pedro 22
+Fulano 25
+João 19
+Betina 22
+João 42
+Victor 19
